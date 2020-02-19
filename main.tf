@@ -20,7 +20,7 @@ resource "random_id" "suffix" {
 }
 
 resource "azurerm_storage_account" "bootstrap-storage-acct" {
-  name                     = "bootstrapAcct${random_id.suffix.dec}"
+  name                     = "bootstrapacct${random_id.suffix.dec}"
   resource_group_name      = var.azure_resource_group
   location                 = var.azure_location
   account_tier             = "Standard"
@@ -28,7 +28,7 @@ resource "azurerm_storage_account" "bootstrap-storage-acct" {
 }
 
 resource "azurerm_storage_share" "bootstrap-storage-share" {
-  name                 = "bootstrapShare${random_id.suffix.dec}"
+  name                 = "bootstrapshare${random_id.suffix.dec}"
   storage_account_name = azurerm_storage_account.bootstrap-storage-acct.name
 }
 
