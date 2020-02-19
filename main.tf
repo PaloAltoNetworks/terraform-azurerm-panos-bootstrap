@@ -32,15 +32,15 @@ resource "azurerm_storage_share" "bootstrap-storage-share" {
   storage_account_name = azurerm_storage_account.bootstrap-storage-acct.name
 }
 
-resource "azurerm_storage_share_directory" "bootstrap_dirs" {
-  for_each = toset(var.bootstrap_directories)
+# resource "azurerm_storage_share_directory" "bootstrap_dirs" {
+#   for_each = toset(var.bootstrap_directories)
 
-  name                 = each.value
-  share_name           = azurerm_storage_share.bootstrap-storage-share.name
-  storage_account_name = azurerm_storage_account.bootstrap-storage-acct.name
-}
+#   name                 = each.value
+#   share_name           = azurerm_storage_share.bootstrap-storage-share.name
+#   storage_account_name = azurerm_storage_account.bootstrap-storage-acct.name
+# }
 
-data "template_file" "init-cfg" {
+data "template_file" "render-init-cfg" {
   template = file("${path.module}/init-cfg.tmpl")
   vars = {
     "hostname"         = var.hostname,
@@ -55,19 +55,16 @@ data "template_file" "init-cfg" {
   }
 }
 
-resource "local_file" "init-cfg-file" {
+resource "local_file" "write-init-cfg" {
   content  = data.template_file.init-cfg.rendered
   filename = "${path.root}/files/config/init-cfg.txt"
 }
 
-
-
-
 resource "null_resource" "file_uploads" {
-  for_each = fileset("${path.root}/files", "**")
+  # for_each = fileset("${path.root}/files", "**")
 
   provisioner "local-exec" {
-    command = "az storage file upload --account-name ${azurerm_storage_account.bootstrap-storage-acct.name} --account-key ${azurerm_storage_account.bootstrap-storage-acct.primary_access_key} --share ${azurerm_storage_share.bootstrap-storage-share.name} --source ${path.root}/files/${each.value}"
+    command = "cd ${path.root}/files; az storage file upload-batch --account-name ${azurerm_storage_account.bootstrap-storage-acct.name} --account-key ${azurerm_storage_account.bootstrap-storage-acct.primary_access_key} --source . --destination ${azurerm_storage_share.bootstrap-storage-share.name}"
   }
 }
 
