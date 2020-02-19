@@ -27,11 +27,11 @@ variable "azure_location" {
 variable "bootstrap_directories" {
   description = "The directories comprising the bootstrap package"
   default = [
-    "config/",
-    "content/",
-    "software/",
-    "license/",
-    "plugins/"
+    "config",
+    "content",
+    "software",
+    "license",
+    "plugins"
   ]
 }
 
