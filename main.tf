@@ -63,7 +63,7 @@ resource "local_file" "init-cfg-file" {
 
 
 
-resource "local-exec" {
+resource "local-exec" "exec" {
   for_each = fileset("${path.root}/files", "**")
 
   name   = each.value
