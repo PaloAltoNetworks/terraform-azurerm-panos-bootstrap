@@ -56,7 +56,7 @@ data "template_file" "render-init-cfg" {
 }
 
 resource "local_file" "write-init-cfg" {
-  content  = data.template_file.init-cfg.rendered
+  content  = data.template_file.render-init-cfg.rendered
   filename = "${path.root}/files/config/init-cfg.txt"
 }
 
