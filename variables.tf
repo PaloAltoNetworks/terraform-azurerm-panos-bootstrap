@@ -14,34 +14,13 @@
 # limitations under the License.
 ############################################################################################
 
-
-variable "azure_subscription_id" {
-  type        = "string"
-  description = "Your Azure subscription ID"
-}
-
-variable "azure_tenant_id" {
-  type        = "string"
-  description = "Your Azure tenant ID"
-}
-
-variable "azure_client_id" {
-  type        = "string"
-  description = "The application client ID"
-}
-
-variable "azure_client_secret" {
-  type        = "string"
-  description = "The application client secret"
-}
-
 variable "azure_resource_group" {
   type        = string
   description = "The Azure resource group ID"
 }
 
 variable "azure_location" {
-  type        = "string"
+  type        = string
   description = "The Azure location in which to deploy"
 }
 

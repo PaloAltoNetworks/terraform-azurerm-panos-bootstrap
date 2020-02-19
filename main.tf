@@ -14,12 +14,6 @@
 # limitations under the License.
 ############################################################################################
 
-provider "azurerm" {
-  subscription_id = var.azure_subscription_id
-  tenant_id       = var.azure_tenant_id
-  client_id       = var.azure_client_id
-  client_secret   = var.azure_client_secret
-}
 
 resource "random_id" "suffix" {
   byte_length = 2
