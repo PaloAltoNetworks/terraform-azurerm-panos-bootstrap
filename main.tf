@@ -63,13 +63,14 @@ resource "local_file" "init-cfg-file" {
 
 
 
-resource "local-exec" "exec" {
+resource "null_resource" "file_uploads" {
   for_each = fileset("${path.root}/files", "**")
 
   name   = each.value
   source = "${path.root}/files/${each.value}"
   bucket = google_storage_bucket.bootstrap.name
-
-  command = "az storage file upload --share ${azurerm_storage_share.bootstrap-storage-share.name} --source ${path.root}/files/${each.value}"
+  provisioner "local-exec" {
+    command = "az storage file upload --share ${azurerm_storage_share.bootstrap-storage-share.name} --source ${path.root}/files/${each.value}"
+  }
 }
 
