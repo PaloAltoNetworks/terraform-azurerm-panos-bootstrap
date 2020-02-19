@@ -67,7 +67,7 @@ resource "null_resource" "file_uploads" {
   for_each = fileset("${path.root}/files", "**")
 
   provisioner "local-exec" {
-    command = "az storage file upload --share ${azurerm_storage_share.bootstrap-storage-share.name} --source ${path.root}/files/${each.value}"
+    command = "az storage file upload --account-name ${azurerm_storage_account.bootstrap-storage-acct.name} --account-key ${azurerm_storage_account.bootstrap-storage-acct.primary_access_key} --share ${azurerm_storage_share.bootstrap-storage-share.name} --source ${path.root}/files/${each.value}"
   }
 }
 
