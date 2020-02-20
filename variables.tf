@@ -24,17 +24,6 @@ variable "azure_location" {
   description = "The Azure location in which to deploy"
 }
 
-variable "bootstrap_directories" {
-  description = "The directories comprising the bootstrap package"
-  default = [
-    "config",
-    "content",
-    "software",
-    "license",
-    "plugins"
-  ]
-}
-
 variable "hostname" {
   default     = ""
   description = "The hostname of the VM-series instance"

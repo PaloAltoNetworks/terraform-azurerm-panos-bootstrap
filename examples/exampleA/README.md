@@ -12,7 +12,7 @@ files
 └── software
 ```
 
-## Examples
+## Example
 
 ```terraform
 #
@@ -26,8 +26,11 @@ provider "azurerm" {
   client_secret   = var.azure_client_secret
 }
 
-module "bootstrap" {
-  source = "github.com/stealthllama/terraform-azurerm-panos-bootstrap"
+module "panos-bootstrap" {
+  source  = "app.terraform.io/stealthllama/panos-bootstrap/azurerm"
+  version = "0.1.1"
+}
+
 
 
   azure_resource_group = var.azure_resource_group
