@@ -16,16 +16,16 @@
 
 
 output "storage_account_name" {
-  value       = "${azurerm_storage_account.bootstrap-storage-acct.name}"
+  value       = azurerm_storage_account.bootstrap-storage-acct.name
   description = "Boostrap storage account"
 }
 
 output "access_key" {
-  value       = "${azurerm_storage_account.bootstrap-storage-acct.primary_access_key}"
+  value       = azurerm_storage_account.bootstrap-storage-acct.primary_access_key
   description = "Bootstrap storage account access key"
 }
 
 output "share_name" {
-  value       = "${azurerm_storage_share.bootstrap-storage-share.name}"
+  value       = azurerm_storage_share.bootstrap-storage-share.name
   description = "Bootstrap storage share name"
 }
