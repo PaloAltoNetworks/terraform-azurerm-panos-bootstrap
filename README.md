@@ -33,47 +33,12 @@ module "bootstrap" {
   azure_resource_group = var.azure_resource_group
   azure_location       = var.azure_location
 
-  hostname         = var.hostname
-  panorama-server  = var.panorama-server
-  panorama-server2 = var.panorama-server2
-  tplname          = var.tplname
-  dgname           = var.dgname
-  vm-auth-key      = var.vm-auth-key
-}
-```
-```terraform
-#
-# variables.tf
-#
-
-variable "azure_subscription_id" {
-  type        = "string"
-  description = "Your Azure subscription ID"
-}
-
-variable "azure_tenant_id" {
-  type        = "string"
-  description = "Your Azure tenant ID"
-}
-
-variable "azure_client_id" {
-  type        = "string"
-  description = "The application client ID"
-}
-
-variable "azure_client_secret" {
-  type        = "string"
-  description = "The application client secret"
-}
-
-variable "azure_resource_group" {
-  type        = string
-  description = "The Azure resource group ID"
-}
-
-variable "azure_location" {
-  type        = "string"
-  description = "The Azure location in which to deploy"
+  hostname         = "az-firewall"
+  panorama-server  = "panorama1.example.org"
+  panorama-server2 = "panorama2.example.org
+  tplname          = "Azure Firewall Template"
+  dgname           = "Azure Firewalls"
+  vm-auth-key      = "supersecretauthkey"
 }
 ```
 
