@@ -2,17 +2,20 @@
 
 The terraform-azurerm-panos-bootstrap module is used to create an Azure file share that to be used for bootstrapping Palo Alto Networks VM-Series virtual firewall instances.  This bootstrap package will include an `init-cfg.txt` file that provides the basic configuration details to configure the VM-Series instance and register it with its Panorama management console.  It may optionally include a PAN-OS software image, application and threat signature updates, VM-Series plug-ins, and/or license files.
 
+## Directory and file structure
+The root directory of the Terraform plan calling this module should include a `files` directory containing a subdirectory structure similar to the one below.
+
 ```
 files
 ├── config
-│   └── init-cfg.txt
 ├── content
 ├── license
 ├── plugins
 └── software
 ```
+This 
 
-## Examples
+## Example
 
 ```terraform
 #
@@ -43,13 +46,16 @@ module "bootstrap" {
 ```
 
 ## Usage
+
 1. Define a `main.tf` file that calls the module and provides any required and optional variables.
 2. Define a `variables.tf` file that declares the variables that will be utilized.
-3. Define an `output.tf` to capture and display the module return values (optional).
-4. Define a `terraform.tfvars` file containing the required variables and associated values.
-5. Initialize the providers and modules with the `terraform init` command.
-6. Validate the plan using the `terraform plan` command.
-7. Apply the plan using the `terraform apply` command. 
+3. (OPTIONAL) Define an `output.tf` file to capture and display the module return values.
+4. Create the directories `files/config`, `files/software`, `files/content`, `files/license`, and `files/plugins`.
+5. (OPTIONAL) Add software images, content updates, plugins, and license files to their respective subdirectories.
+6. (OPTIONAL) Define a `terraform.tfvars` file containing the required variables and associated values.
+7. Initialize the providers and modules with the `terraform init` command.
+8. Validate the plan using the `terraform plan` command.
+9. Apply the plan using the `terraform apply` command. 
 
 ## References
 * [VM-Series Firewall Bootstrap Workflow](https://docs.paloaltonetworks.com/vm-series/9-1/vm-series-deployment/bootstrap-the-vm-series-firewall/vm-series-firewall-bootstrap-workflow.html#id59fe5979-c29d-42aa-8e72-14a2c12855f6)
