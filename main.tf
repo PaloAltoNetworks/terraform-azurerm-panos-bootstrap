@@ -61,7 +61,6 @@ resource "local_file" "write-init-cfg" {
 }
 
 resource "null_resource" "file_uploads" {
-  # for_each = fileset("${path.root}/files", "**")
 
   provisioner "local-exec" {
     command = "cd ${path.root}/files; az storage file upload-batch --account-name ${azurerm_storage_account.bootstrap-storage-acct.name} --account-key ${azurerm_storage_account.bootstrap-storage-acct.primary_access_key} --source . --destination ${azurerm_storage_share.bootstrap-storage-share.name}"

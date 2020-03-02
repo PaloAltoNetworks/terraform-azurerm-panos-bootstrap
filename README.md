@@ -30,21 +30,26 @@ provider "azurerm" {
   client_secret   = var.azure_client_secret
 }
 
-module "bootstrap" {
-  source = "github.com/stealthllama/terraform-azurerm-panos-bootstrap"
 
+module "panos-bootstrap" {
+  source  = "stealthllama/panos-bootstrap/azurerm"
+  version = "1.0.3"
 
   azure_resource_group = var.azure_resource_group
   azure_location       = var.azure_location
 
   hostname         = "az-firewall"
   panorama-server  = "panorama1.example.org"
-  panorama-server2 = "panorama2.example.org
+  panorama-server2 = "panorama2.example.org"
   tplname          = "Azure Firewall Template"
   dgname           = "Azure Firewalls"
   vm-auth-key      = "supersecretauthkey"
 }
 ```
+
+## Requirements
+
+The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) must be installed on the host executing the Terraform plan.
 
 ## Instructions
 
