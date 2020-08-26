@@ -32,17 +32,17 @@ provider "azurerm" {
 
 
 module "panos-bootstrap" {
-  source  = "stealthllama/panos-bootstrap/azurerm"
-  version = "1.0.3"
+  source  = "PaloAltoNetworks/panos-bootstrap/azurerm"
+  version = "1.0.4"
 
   azure_resource_group = var.azure_resource_group
   azure_location       = var.azure_location
 
-  hostname         = "az-firewall"
+  hostname         = "my-firewall"
   panorama-server  = "panorama1.example.org"
   panorama-server2 = "panorama2.example.org"
-  tplname          = "Azure Firewall Template"
-  dgname           = "Azure Firewalls"
+  tplname          = "My Firewall Template"
+  dgname           = "My Firewalls"
   vm-auth-key      = "supersecretauthkey"
 }
 ```
@@ -127,6 +127,6 @@ resource "azurerm_virtual_machine" "vmseries" {
 
 
 ## References
-* [VM-Series Firewall Bootstrap Workflow](https://docs.paloaltonetworks.com/vm-series/9-1/vm-series-deployment/bootstrap-the-vm-series-firewall/vm-series-firewall-bootstrap-workflow.html#id59fe5979-c29d-42aa-8e72-14a2c12855f6)
-* [Bootstrap the VM-Series Firewall on Azure](https://docs.paloaltonetworks.com/vm-series/9-1/vm-series-deployment/bootstrap-the-vm-series-firewall/bootstrap-the-vm-series-firewall-in-azure.html#idd51f75b8-e579-44d6-a809-2fafcfe4b3b6)
-* [Prepare the Bootstrap Package](https://docs.paloaltonetworks.com/vm-series/9-1/vm-series-deployment/bootstrap-the-vm-series-firewall/prepare-the-bootstrap-package.html#id5575318c-1de8-497a-960a-1d7417feefa6)
+* [VM-Series Firewall Bootstrap Workflow](https://docs.paloaltonetworks.com/vm-series/10-0/vm-series-deployment/bootstrap-the-vm-series-firewall/vm-series-firewall-bootstrap-workflow.html#id59fe5979-c29d-42aa-8e72-14a2c12855f6)
+* [Bootstrap the VM-Series Firewall on Azure](https://docs.paloaltonetworks.com/vm-series/10-0/vm-series-deployment/bootstrap-the-vm-series-firewall/bootstrap-the-vm-series-firewall-in-azure.html#idd51f75b8-e579-44d6-a809-2fafcfe4b3b6)
+* [Prepare the Bootstrap Package](https://docs.paloaltonetworks.com/vm-series/10-0/vm-series-deployment/bootstrap-the-vm-series-firewall/prepare-the-bootstrap-package.html#id5575318c-1de8-497a-960a-1d7417feefa6)
