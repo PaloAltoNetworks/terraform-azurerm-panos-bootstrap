@@ -64,6 +64,7 @@ resource "null_resource" "file_uploads" {
 
   provisioner "local-exec" {
     command = "cd ${path.root}/files; az storage file upload-batch --account-name ${azurerm_storage_account.bootstrap-storage-acct.name} --account-key ${azurerm_storage_account.bootstrap-storage-acct.primary_access_key} --source . --destination ${azurerm_storage_share.bootstrap-storage-share.name}"
+    interpreter = ["PowerShell", "-Command"]
   }
 }
 
