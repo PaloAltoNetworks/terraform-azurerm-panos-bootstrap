@@ -112,14 +112,16 @@ resource "azurerm_virtual_machine" "vmseries" {
     computer_name  = "${var.name}${count.index + 1}"
     admin_username = var.username
     admin_password = var.password
-    custom_data = join(
-      ",",
-      [
-        "storage-account=${var.storage_account}",
-        "access-key=${var.access_key}",
-        "file-share=${var.share_name}",
-        "share-directory=${var.share_directory}"
-      ],
+    custom_data = base64encode(
+      join(
+        ",",
+        [
+          "storage-account=${var.storage_account}",
+          "access-key=${var.access_key}",
+          "file-share=${var.share_name}",
+          "share-directory=${var.share_directory}"
+        ],
+      )
     )
   }
 }
